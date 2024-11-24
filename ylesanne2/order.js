@@ -1,4 +1,4 @@
-import { Cart } from "./cart";
+// import { Cart } from "./cart.js"; //siia ei sobi
 
 export class Order {
   constructor(cart) {
