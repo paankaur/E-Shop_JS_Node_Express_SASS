@@ -1,3 +1,5 @@
+import { Order } from "./order";
+
 export class Customer {
     constructor(name) {
       this.name = name;

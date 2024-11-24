@@ -1,3 +1,5 @@
+import { Cart } from "./cart";
+
 export class Order {
   constructor(cart) {
     this.orderDate = new Date();
