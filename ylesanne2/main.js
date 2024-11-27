@@ -26,7 +26,7 @@ function displayProducts(category = null) {
     productElement.classList.add("product-item");
     productElement.innerHTML = `<div onclick="showProductDetail(${product.id})">
         <h3>${product.title}</h3><p>Category: ${product.category}</p>
-        <p>Price: ${product.price}</p></div>
+        <p>Price: €${product.price}</p></div>
         <button onclick="addToCart(${product.id})">Add to cart</button>
         <button onclick="addToFavorites(${product.id})">
         Add to favorites for safekeeping</button>`;
