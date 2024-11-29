@@ -1,6 +1,6 @@
 import { Product } from "./product.js"; // kindlasti pane .js faililaiendus!!!! kui importid
 import { Cart } from "./cart.js";
-// import { Order } from "./order";  //Customeris juba on see importitud
+import { displayAllProductsView } from "./views/allProductsView.js";
 import { Customer } from "./customer.js";
 
 //tegin tooted
@@ -10,28 +10,30 @@ const products = [
   new Product(2, "3x3", 32.9, "Pusle"),
   new Product(3, "Tahvelarvuti", 299.0, "Elektroonika"),
 ];
+
+displayAllProductsView(products);
 const cart = new Cart();
 
 //Toodete kuvamine
-function displayProducts(category = null) {
-  const productsContainer = document.getElementById("products");
-  productsContainer.innerHTML = "";
+// function displayProducts(category = null) {
+//   const productsContainer = document.getElementById("products");
+//   productsContainer.innerHTML = "";
 
-  const filteredProducts = category
-    ? products.filter((p) => p.category === category)
-    : products;
+//   const filteredProducts = category
+//     ? products.filter((p) => p.category === category)
+//     : products;
 
-  filteredProducts.forEach((product) => {
-    const productElement = document.createElement("div");
-    productElement.classList.add("product-item");
-    productElement.innerHTML = `<div onclick="showProductDetail(${product.id})">
-        <h3>${product.title}</h3><p>Category: ${product.category}</p>
-        <p>Price: €${product.price}</p></div>
-        <button onclick="addToCart(${product.id})">Add to cart</button>
-        <button onclick="addToFavorites(${product.id})">
-        Add to favorites for safekeeping</button>`;
-        productsContainer.appendChild(productElement);
-  });
+//   filteredProducts.forEach((product) => {
+//     const productElement = document.createElement("div");
+//     productElement.classList.add("product-item");
+//     productElement.innerHTML = `<div onclick="showProductDetail(${product.id})">
+//         <h3>${product.title}</h3><p>Category: ${product.category}</p>
+//         <p>Price: €${product.price}</p></div>
+//         <button onclick="addToCart(${product.id})">Add to cart</button>
+//         <button onclick="addToFavorites(${product.id})">
+//         Add to favorites for safekeeping</button>`;
+//         productsContainer.appendChild(productElement);
+//   });
 
   /* products.forEach((product) => {
     const productCard = document.createElement("div")
@@ -40,8 +42,8 @@ function displayProducts(category = null) {
     products.append(productTitle);
     products.append(productCard);
 }) */
-}
-displayProducts("Pusle");
+// }
+// displayProducts("Pusle");
 //Ostukorv ja lisan tooteid sinna
 
 // cart.addProduct(laptop, 1);
