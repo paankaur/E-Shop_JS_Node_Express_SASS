@@ -1,3 +1,5 @@
+import { navigate } from "../router.js";
+
 export const displayAllProductsView = (products) => {
     const container = document.getElementById("products");
     container.innerHTML = "<h2>Products</h2>";
@@ -13,6 +15,11 @@ export const displayAllProductsView = (products) => {
         <p>Category: ${product.category}</p>
         <p>Price: €${product.price}</p>
         `;
+
+        productCard.onclick = (e) => {
+            e.stopPropagation();
+            navigate("productDetail", product);
+        };
 
         productsContainer.append(productCard);
         

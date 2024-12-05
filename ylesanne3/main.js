@@ -24,7 +24,11 @@ const initApp = async () => {
   const cartButton = document.getElementById("cart-button");
   cartButton.onclick = () => navigate("cart");
 
-  displayAllProductsView(products);
+  // funktsioonide kutsumised
+  //displayAllProductsView(products);
+  displayProductDetailView(products[0]);
+  displayCartView(cart);
+  displayFavoritesView(favorites);
 
 };
 
