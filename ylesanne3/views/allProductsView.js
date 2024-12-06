@@ -1,4 +1,6 @@
 import { navigate } from "../router.js";
+import { cartConstructor } from "./cartView.js";
+import { customerConstructor } from "../constructors/customer.js";
 
 export const displayAllProductsView = (products) => {
     const container = document.getElementById("products");
@@ -14,6 +16,7 @@ export const displayAllProductsView = (products) => {
         <h3>${product.title}</h3>
         <p>Category: ${product.category}</p>
         <p>Price: €${product.price}</p>
+        <button id="addToCartBtn" data-id=${product.id}>Add to cart</button>
         `;
 
         productCard.onclick = (e) => {
@@ -28,3 +31,4 @@ export const displayAllProductsView = (products) => {
     container.append(productsContainer);
 };
 
+//fix this next

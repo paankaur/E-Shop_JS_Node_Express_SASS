@@ -24,13 +24,18 @@ const initApp = async () => {
   const cartButton = document.getElementById("cart-button");
   cartButton.onclick = () => navigate("cart");
 
+  const favoritesButton = document.getElementById("favorites-button");
+  favoritesButton.onclick = () => navigate("favorites");
+
   // funktsioonide kutsumised
-  //displayAllProductsView(products);
-  displayProductDetailView(products[0]);
-  displayCartView(cart);
+  displayAllProductsView(products);
+  //displayProductDetailView(products[0]);
+  //displayCartView(cart);
   displayFavoritesView(favorites);
 
 };
+
+document.addEventListener("DOMContentLoaded", initApp);
 
 //Toodete kuvamine
 // function displayProducts(category = null) {

@@ -4,6 +4,7 @@ export class Customer {
     constructor(name) {
       this.name = name;
       this.orderHistory = [];
+      this.favorites = [];
     }
     placeOrder(cart) {
       const order = new Order(cart);
@@ -21,4 +22,20 @@ export class Customer {
         console.log(`Total price: €${order.cart.calculateTotal().toFixed(2)}`);
       });
     }
+    toggleFavorites(product) {
+      const existingItem = this.favorites.find(
+        (item) => item.product.id === product.id
+      );
+      if (existingItem) {
+        this.favorites = this.favorites.filter((item) => item.product.id !== product.id);
+      } else {
+        this.favorites.push({ product });
+      }
+      console.log("Favorites: ", this.favorites);
+    }
+    getAllFavorites() {
+      return this.favorites;
+    }
   }
+
+  export const customerConstructor = new Customer("Bob");

@@ -7,7 +7,7 @@ export class Cart {
     return this.items;
   }
 
-  addProduct(product, quantity) {
+  addProduct(product, quantity = 1) {
     const existingItem = this.items.find(
       (item) => item.product.title === product.title
     );

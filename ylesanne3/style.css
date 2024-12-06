@@ -2,3 +2,6 @@ div {
     border-radius: 15px;
     border: solid blueviolet;
 }
+a {
+    text-decoration: none;
+}

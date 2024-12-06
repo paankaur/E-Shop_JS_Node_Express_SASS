@@ -1,11 +1,11 @@
 import { Cart } from "../constructors/cart.js";
 
-const cartConstructor = new Cart();
+export const cartConstructor = new Cart();
 
 //Ostukorvi vaate genereerimine
 export const displayCartView = () => {
   const container = document.getElementById("main-container");
-  container.innerHTML = "<h2>Ostukorv</h2>";
+  container.innerHTML = "<h2>Cart</h2>";
 
   const cart = cartConstructor.getAllProducts();
 

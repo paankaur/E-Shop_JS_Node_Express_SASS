@@ -21,3 +21,4 @@ export const displayAllProductsView = (products) => {
     container.append(productsContainer);
 };
 
+// kasuta Estonian(US) keyboard
