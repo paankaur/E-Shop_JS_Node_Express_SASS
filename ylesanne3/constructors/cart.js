@@ -47,3 +47,5 @@ export class Cart {
     this.items = [];
   }
 }
+
+export const cartConstructor = new Cart();

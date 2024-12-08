@@ -1,4 +1,8 @@
- export const displayFavoritesView = (favorites) => {
+import { customerConstructor } from "../constructors/customer.js"; 
+
+ export const displayFavoritesView = () => {
+   const favorites = customerConstructor.getAllFavorites();
+
    const container = document.getElementById("main-container");
    container.innerHTML = "<h2>Favorites</h2>";
   
@@ -6,8 +10,8 @@
      const favoriteItemElement = document.createElement("div");
      favoriteItemElement.classList.add("favorite-item");
      favoriteItemElement.innerHTML = `
-         <h3>${item.title}</h3>
-         <p>Price: €${item.price}</p>`;
+         <h3>${item.product.title}</h3>
+         <p>Price: €${item.product.price}</p>`;
      container.appendChild(favoriteItemElement);
    });
  };
