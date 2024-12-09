@@ -1,7 +1,7 @@
 import { Product } from "./constructors/product.js"; // kindlasti pane .js faililaiendus!!!! kui importid
-import { Cart } from "./constructors/cart.js";
+import { cartConstructor } from "./constructors/cart.js";
 import { displayAllProductsView } from "./views/allProductsView.js";
-import { Customer } from "./constructors/customer.js";
+import { customerConstructor } from "./constructors/customer.js";
 import { displayProductDetailView } from "./views/productDetailView.js";
 import { displayCartView } from "./views/cartView.js";
 import { displayFavoritesView } from "./views/favoritesView.js";
@@ -15,10 +15,11 @@ const products = [
   new Product(3, "Tablet", 299.0, "Electronics"),
 ];
 
-displayAllProductsView(products);
-const cart = new Cart();
+cartConstructor.addProduct(products[0], 2);
+customerConstructor.toggleFavorites(products[1]);
+
 //uus
-const favorites = []; 
+//const favorites = []; 
 
 const initApp = async () => {
   const cartButton = document.getElementById("cart-button");
@@ -29,9 +30,9 @@ const initApp = async () => {
 
   // funktsioonide kutsumised
   displayAllProductsView(products);
-  //displayProductDetailView(products[0]);
-  //displayCartView(cart);
-  displayFavoritesView(favorites);
+  displayProductDetailView(products[1]);
+  displayCartView();
+  displayFavoritesView();
 
 };
 
@@ -74,15 +75,15 @@ document.addEventListener("DOMContentLoaded", initApp);
 // cart.addProduct(kuubik, -3);
 
 //Ostukorvi sisuhaldus
-console.log("Kogusumma: ", cart.calculateTotal());
-console.log("Ostukorvi sisu: ", cart.totalItems);
+// console.log("Kogusumma: ", cart.calculateTotal());
+// console.log("Ostukorvi sisu: ", cart.totalItems);
 
 // Teen kliendi ja tellimuse
-const customer = new Customer("Kirsika");
-customer.placeOrder(cart);
+// const customer = new Customer("Kirsika");
+// customer.placeOrder(cart);
 
 //Tellimuse ajaloo kuvamine
-customer.printOrderHistory();
+//customer.printOrderHistory();
 
 // console.log(kuubik.describe());
 // console.log(laptop.describe());

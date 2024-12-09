@@ -46,6 +46,14 @@ export class Cart {
   clear() {
     this.items = [];
   }
+  /* displayTotalItems() {
+    const cartCount = document.getElementById("cart-count");
+
+    cartCount.innerHTML = this.items.reduce(
+      (total, item) => total + item.quantity,
+      0
+    );
+  } */
 }
 
 export const cartConstructor = new Cart();

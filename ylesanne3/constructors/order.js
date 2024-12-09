@@ -18,3 +18,5 @@ export class Order {
     console.log("Total price: €" + this.cart.calculateTotal().toFixed(2));
   }
 }
+
+export const orderConstructor = new Order();

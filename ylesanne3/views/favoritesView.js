@@ -4,7 +4,7 @@ import { customerConstructor } from "../constructors/customer.js";
    const favorites = customerConstructor.getAllFavorites();
 
    const container = document.getElementById("main-container");
-   container.innerHTML = "<h2>Favorites</h2>";
+   container.innerHTML = "<h2>Favorites:</h2>";
   
    favorites.forEach((item) => {
      const favoriteItemElement = document.createElement("div");

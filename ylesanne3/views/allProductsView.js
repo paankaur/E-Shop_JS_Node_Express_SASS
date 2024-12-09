@@ -1,6 +1,8 @@
 import { navigate } from "../router.js";
 import { cartConstructor } from "../constructors/cart.js";
 import { customerConstructor } from "../constructors/customer.js";
+import { displayCartView } from "./cartView.js";
+import { displayFavoritesView } from "./favoritesView.js";
 
 export const displayAllProductsView = (products) => {
     const container = document.getElementById("products");
@@ -22,18 +24,20 @@ export const displayAllProductsView = (products) => {
 
 
 
-         productCard.onclick = (e) => {
+         /* productCard.onclick = (e) => {
              e.stopPropagation();
              navigate("productDetail", product);
-         };
+         }; */
 
         productsContainer.append(productCard);
 
         productCard.addEventListener("click", (event) => {
             if (event.target.id === "addToCartBtn") {
                 cartConstructor.addProduct(product);
+                displayCartView();
             } else if (event.target.id === "addToFavoritesBtn") {
                 customerConstructor.toggleFavorites(product);
+                displayFavoritesView();
             } else {
                 navigate("productDetail", product);
             }
