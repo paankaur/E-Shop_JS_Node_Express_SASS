@@ -15,8 +15,8 @@ const products = [
   new Product(3, "Tablet", 299.0, "Electronics"),
 ];
 
-cartConstructor.addProduct(products[0], 2);
-customerConstructor.toggleFavorites(products[1]);
+// cartConstructor.addProduct(products[0], 2);
+// customerConstructor.toggleFavorites(products[1]);
 
 //uus
 //const favorites = []; 
@@ -30,9 +30,9 @@ const initApp = async () => {
 
   // funktsioonide kutsumised
   displayAllProductsView(products);
-  displayProductDetailView(products[1]);
-  displayCartView();
-  displayFavoritesView();
+  // displayProductDetailView(products[1]);
+  // displayCartView();
+  // displayFavoritesView();
 
 };
 

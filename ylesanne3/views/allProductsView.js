@@ -5,7 +5,7 @@ import { displayCartView } from "./cartView.js";
 import { displayFavoritesView } from "./favoritesView.js";
 
 export const displayAllProductsView = (products) => {
-    const container = document.getElementById("products");
+    const container = document.getElementById("main-container");
     container.innerHTML = "<h2>Products</h2>";
 
     const productsContainer = document.createElement("div");
@@ -29,21 +29,21 @@ export const displayAllProductsView = (products) => {
              navigate("productDetail", product);
          }; */
 
-        productsContainer.append(productCard);
+        // productsContainer.append(productCard);
 
         productCard.addEventListener("click", (event) => {
             if (event.target.id === "addToCartBtn") {
                 cartConstructor.addProduct(product);
-                displayCartView();
+                // displayCartView();
             } else if (event.target.id === "addToFavoritesBtn") {
                 customerConstructor.toggleFavorites(product);
-                displayFavoritesView();
+                // displayFavoritesView();
             } else {
                 navigate("productDetail", product);
             }
         });
         
-
+        productsContainer.append(productCard);
     });
     container.append(productsContainer);
 };
