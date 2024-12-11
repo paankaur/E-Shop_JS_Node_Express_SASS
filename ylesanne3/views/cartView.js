@@ -29,12 +29,20 @@ export const displayCartView = () => {
       cartConstructor.addProduct(item.product, -1);
       displayCartView();
     };
-    
+    //work is being done here !!!!!! work is being done here !!!!!! work is being done here !!!!!!
     const quantityInput = document.createElement("input");
     quantityInput.type = "number";
     quantityInput.value = item.quantity;
-    quantityInput.onchange = (e) => {
-      // tee see järgmiseks valmis, tervita Nekot
+    let timer;
+    quantityInput.oninput = (e) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        const newQantity = parseInt(e.target.value, 10);
+        if (!isNaN(newQantity)) {
+          cartConstructor.addProduct(item.product, newQantity - item.quantity);
+          displayCartView();
+        }
+      }, 500);
     }
 
     const plusBtn = document.createElement("button");

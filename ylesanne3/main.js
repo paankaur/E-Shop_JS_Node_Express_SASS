@@ -28,6 +28,9 @@ const initApp = async () => {
   const favoritesButton = document.getElementById("favorites-button");
   favoritesButton.onclick = () => navigate("favorites");
 
+  const pealkiriBtn = document.getElementById("pealkiri");
+  pealkiriBtn.onclick = () => navigate("allProducts", products);
+
   // funktsioonide kutsumised
   displayAllProductsView(products);
   // displayProductDetailView(products[1]);
