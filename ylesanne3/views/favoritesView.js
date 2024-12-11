@@ -34,4 +34,4 @@ import { customerConstructor } from "../constructors/customer.js";
 //     container.appendChild(favoriteItemElement);
 //   });
 // }
-// };
+// }

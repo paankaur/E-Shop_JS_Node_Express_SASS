@@ -23,6 +23,27 @@ export const displayCartView = () => {
       <p>Quantity: ${item.quantity}</p>
     `;
 
+    const minusBtn = document.createElement("button");
+    minusBtn.textContent = "-";
+    minusBtn.onclick = () => {
+      cartConstructor.addProduct(item.product, -1);
+      displayCartView();
+    };
+    
+    const quantityInput = document.createElement("input");
+    quantityInput.type = "number";
+    quantityInput.value = item.quantity;
+    quantityInput.onchange = (e) => {
+      // tee see järgmiseks valmis, tervita Nekot
+    }
+
+    const plusBtn = document.createElement("button");
+    plusBtn.textContent = "+";
+    plusBtn.onclick = () => {
+      cartConstructor.addProduct(item.product, 1);
+      displayCartView();
+    };
+
     const removeBtn = document.createElement("button");
     removeBtn.textContent = "Remove";
     removeBtn.onclick = () => {
@@ -30,11 +51,13 @@ export const displayCartView = () => {
   //    if (item.quantity > 1) {
  //      cartConstructor.addProduct(item.product, -1);
  //     } else {}
- cartConstructor.addProduct(item.product, -1);
+ cartConstructor.addProduct(item.product, -10);
       displayCartView();
       // calculateTotal();
     };
-
+      cartItemElement.appendChild(minusBtn);
+      cartItemElement.appendChild(quantityInput)
+      cartItemElement.appendChild(plusBtn);
       cartItemElement.appendChild(removeBtn);
       container.append(cartItemElement);
     });
