@@ -12,22 +12,40 @@ export const displayProductDetailView = (product) => {
   <p>Price: €${product.price}</p>
   <p>ID: ${product.id}</p>
   <button id="addToCartBtn${product.id}">Add to cart</button>
-  <button id="addToFavoritesBtn${product.id}">Toggle favorites</button>
+  <button id="addToFavoritesBtn${product.id}">${
+    customerConstructor.isFavorite(product)
+      ? "Added to favorites"
+      : "Add to favorites"
+  }</button>
   `;
+  const favoritesButton = productCard.querySelector(
+    `#addToFavoritesBtn${product.id}`
+  );
+  const cartButton = productCard.querySelector(`#addToCartBtn${product.id}`);
 
-  productCard.addEventListener("click", (event) => {
-    if (event.target.id === `addToCartBtn${product.id}`) {
-        cartConstructor.addProduct(product);
-        // displayCartView();
-    } else if (event.target.id === `addToFavoritesBtn${product.id}`) {
-        customerConstructor.toggleFavorites(product);
-        // displayFavoritesView();
-    } else {
-        navigate("productDetail", product);
-    }
-});
+  favoritesButton.addEventListener("click", (e) => {
+    customerConstructor.toggleFavorites(product);
+    favoritesButton.innerHTML = customerConstructor.isFavorite(product)
+      ? "Added to favorites"
+      : "Add to favorites";
+    // e.stopPropagation();
+  });
+
+  cartButton.addEventListener("click", (event) => {
+    cartConstructor.addProduct(product);
+  });
+
+  //   productCard.addEventListener("click", (event) => {
+  //     if (event.target.id === `addToCartBtn${product.id}`) {
+  //         cartConstructor.addProduct(product);
+  //         // displayCartView();
+  //     } else if (event.target.id === `addToFavoritesBtn${product.id}`) {
+  //         customerConstructor.toggleFavorites(product);
+  //         // displayFavoritesView();
+  //     } else {
+  //         navigate("productDetail", product);
+  //     }
+  // });
 
   container.append(productCard);
-
-
 };

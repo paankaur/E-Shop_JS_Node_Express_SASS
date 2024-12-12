@@ -72,7 +72,7 @@ export const displayCartView = () => {
     const totalPrice = cartConstructor.calculateTotal();
     const totalElement = document.createElement("p");
     totalElement.classList.add("cart-total");
-    totalElement.innerHTML = `<strong>Total price: €${totalPrice.toFixed(2)}</strong>`;
+    totalElement.innerHTML = `<p><strong>Total price: €${totalPrice.toFixed(2)}</strong><br>Tax(included): €${totalPrice.toFixed(2) * 0.22}</p>`;
     container.append(totalElement);
   }
 };

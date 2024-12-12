@@ -29,11 +29,12 @@ export const displayAllProductsView = (products) => {
       `#addToFavoritesBtn${product.id}`
     );
 
-    favoritesButton.addEventListener("click", () => {
+    favoritesButton.addEventListener("click", (e) => {
       customerConstructor.toggleFavorites(product);
       favoritesButton.innerHTML = customerConstructor.isFavorite(product)
         ? "Added to favorites"
         : "Add to favorites";
+        e.stopPropagation();
     });
 
     productCard.addEventListener("click", (event) => {
