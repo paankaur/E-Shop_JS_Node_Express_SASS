@@ -5,7 +5,7 @@ export class Product {
     this.price = price;
     this.category = category;
   }
-
+  
   describe() {
     return `Title: ${this.title}, Category: ${
       this.category

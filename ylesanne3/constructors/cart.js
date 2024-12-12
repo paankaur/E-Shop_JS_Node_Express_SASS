@@ -1,6 +1,8 @@
+import { displayCartView } from "../views/cartView.js";
 export class Cart {
   constructor() {
     this.items = [];
+    // this.VAT = 0.22;
   }
 
   getAllProducts() {
@@ -57,15 +59,9 @@ export class Cart {
 
   clear() {
     this.items = [];
+    this.displayTotalItems();
+    displayCartView();
   }
-  /* displayTotalItems() {
-    const cartCount = document.getElementById("cart-count");
-
-    cartCount.innerHTML = this.items.reduce(
-      (total, item) => total + item.quantity,
-      0
-    );
-  } */
 }
 
 export const cartConstructor = new Cart();

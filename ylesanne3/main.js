@@ -6,14 +6,15 @@ import { displayProductDetailView } from "./views/productDetailView.js";
 import { displayCartView } from "./views/cartView.js";
 import { displayFavoritesView } from "./views/favoritesView.js";
 import { navigate } from "./router.js";
+import { getProductsDataFromJson } from "./api.js";
 
 //tegin tooted
 
-const products = [
+/* const products = [
   new Product(1, "Laptop", 699.75, "Electronics"),
   new Product(2, "3x3", 32.9, "Puzzle"),
   new Product(3, "Tablet", 299.0, "Electronics"),
-];
+]; */
 
 // cartConstructor.addProduct(products[0], 2);
 // customerConstructor.toggleFavorites(products[1]);
@@ -22,6 +23,11 @@ const products = [
 //const favorites = []; 
 
 const initApp = async () => {
+  const productsData = await getProductsDataFromJson();
+  const products = productsData.map(
+    (item) => new Product(item.id, item.title, item.price, item.category)
+  );
+
   const cartButton = document.getElementById("cart-button");
   cartButton.onclick = () => navigate("cart");
 
@@ -30,6 +36,8 @@ const initApp = async () => {
 
   const pealkiriBtn = document.getElementById("pealkiri");
   pealkiriBtn.onclick = () => navigate("allProducts", products);
+
+  // oli vaja kutsuda initApp() nii et lahendus vb teeb probleeme!!
 
   // funktsioonide kutsumised
   displayAllProductsView(products);
@@ -41,60 +49,12 @@ const initApp = async () => {
 
 document.addEventListener("DOMContentLoaded", initApp);
 
-//Toodete kuvamine
-// function displayProducts(category = null) {
-//   const productsContainer = document.getElementById("products");
-//   productsContainer.innerHTML = "";
 
-//   const filteredProducts = category
-//     ? products.filter((p) => p.category === category)
-//     : products;
-
-//   filteredProducts.forEach((product) => {
-//     const productElement = document.createElement("div");
-//     productElement.classList.add("product-item");
-//     productElement.innerHTML = `<div onclick="showProductDetail(${product.id})">
-//         <h3>${product.title}</h3><p>Category: ${product.category}</p>
-//         <p>Price: €${product.price}</p></div>
-//         <button onclick="addToCart(${product.id})">Add to cart</button>
-//         <button onclick="addToFavorites(${product.id})">
-//         Add to favorites for safekeeping</button>`;
-//         productsContainer.appendChild(productElement);
-//   });
-
-  /* products.forEach((product) => {
-    const productCard = document.createElement("div")
-    const productTitle = document.createElement("h3")
-    productCard.innerHTML = `<h3>${product.title}</h3>`
-    products.append(productTitle);
-    products.append(productCard);
-}) */
-// }
-// displayProducts("Pusle");
-//Ostukorv ja lisan tooteid sinna
-
-// cart.addProduct(laptop, 1);
-// cart.addProduct(kuubik, 5);
-// cart.addProduct(kuubik, -3);
-
-//Ostukorvi sisuhaldus
-// console.log("Kogusumma: ", cart.calculateTotal());
-// console.log("Ostukorvi sisu: ", cart.totalItems);
-
-// Teen kliendi ja tellimuse
-// const customer = new Customer("Kirsika");
-// customer.placeOrder(cart);
-
-//Tellimuse ajaloo kuvamine
-//customer.printOrderHistory();
-
-// console.log(kuubik.describe());
-// console.log(laptop.describe());
 
 const pealkiri = document.getElementById("pealkiri");
 
 document.title = "Legit Online Shop";
-pealkiri.textContent = "Cart-E-Mart";
+pealkiri.textContent = "🥑Cart-E-Mart🍺";
 
 pealkiri.style.backgroundColor = "chocolate";
 pealkiri.style.color = "purple";
@@ -104,5 +64,4 @@ pealkiri.style.textAlign = "center";
 
 
 
-// const mainDiv = document.getElementById("mainDiv");
-console.log(products);
+// https://vs24riives.ita.voco.ee/Veebiarendus/E_pood_ylesanne_4/

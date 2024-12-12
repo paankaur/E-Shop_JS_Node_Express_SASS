@@ -1,4 +1,4 @@
-// import { Cart } from "./cart.js"; //siia ei sobi
+import { cartConstructor } from "./cart.js";
 
 export class Order {
   constructor(cart) {
@@ -7,16 +7,32 @@ export class Order {
   }
 
   printOrder() {
-    console.log(`Order date: ${this.orderDate.toDateString()}`);
-    console.log("Shopping Cart: ");
+    const cartContainer = document.getElementById("cart");
+    const orderContainer = document.createElement("div");
+    orderContainer.classList.add("order-container");
+    orderContainer.innerHTML = `<h2>Order date: ${this.orderDate.toDateString()}</h2>`;
 
     this.cart.items.forEach((item) => {
-      console.log(
-        `Product: ${item.product.title}, Quantity: ${item.quantity}, Price €${item.product.price}`
-      );
+      const cartElement = document.createElement("p");
+      cartElement.innerHTML = `Product: ${item.product.title}
+      <br>Price: €${item.product.price}
+      <br>Quantity: ${item.quantity}
+    `;
+      orderContainer.append(cartElement);
     });
-    console.log("Total price: €" + this.cart.calculateTotal().toFixed(2));
+    const sumElement = document.createElement("h4");
+    sumElement.innerHTML = `Total: €${this.cart.calculateTotal().toFixed(2)}`;
+
+    const closeButton = document.createElement("button");
+    closeButton.textContent = "Close";
+    closeButton.onclick = () => {
+      orderContainer.className = "order-container-close";
+      cartConstructor.clear();
+    };
+    orderContainer.append(sumElement, closeButton);
+    cartContainer.append(orderContainer);
+
   }
 }
 
-export const orderConstructor = new Order();
+// export const orderConstructor = new Order();

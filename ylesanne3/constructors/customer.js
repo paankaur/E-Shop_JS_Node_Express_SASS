@@ -6,10 +6,13 @@ export class Customer {
     this.orderHistory = [];
     this.favorites = [];
   }
+
   placeOrder(cart) {
     const order = new Order(cart);
     this.orderHistory.push(order);
+    order.printOrder();
   }
+
   printOrderHistory() {
     if (this.orderHistory.length === 0) {
       console.log(`${this.name} has no order history.`);
