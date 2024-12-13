@@ -13,15 +13,15 @@ export const navigate = (view, param) => {
 
     if (views[view]) {
         views[view]();
-        const encodedParam = encodeURIComponent(param);
+        /*const encodedParam = encodeURIComponent(param);
         const newURL = view === "category" && !param ? "/" : `/${view}/${encodedParam || ""}`;
-        window.history.pushState({}, "", newURL);
+        window.history.pushState({}, "", newURL);*/
     }
 };
 
-window.addEventListener("popstate", () => {
+/*window.addEventListener("popstate", () => {
     const path = window.location.pathname;
     const [_, view, param] = path.split("/");
     const decodedParam = decodeURIComponent(param);
     navigate(view || "category", decodedParam);
-});
+});*/

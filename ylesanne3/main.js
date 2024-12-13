@@ -6,7 +6,7 @@ import { displayProductDetailView } from "./views/productDetailView.js";
 import { displayCartView } from "./views/cartView.js";
 import { displayFavoritesView } from "./views/favoritesView.js";
 import { navigate } from "./router.js";
-import { getProductsDataFromJson } from "./api.js";
+import { getAllCategory, getProductsDataFromJson } from "./api.js";
 
 //tegin tooted
 
@@ -23,10 +23,21 @@ import { getProductsDataFromJson } from "./api.js";
 //const favorites = []; 
 
 const initApp = async () => {
-  const productsData = await getProductsDataFromJson();
+  /*const productsData = await getProductsByCategory();
   const products = productsData.map(
     (item) => new Product(item.id, item.title, item.price, item.category)
-  );
+  );*/
+
+  const categories = await getAllCategory();
+  const categoryMenu = document.getElementById("categories");
+
+  categories.forEach((category) => {
+    const categoryElement = document.createElement("button");
+    categoryElement.textContent = category;
+    categoryElement.onclick = () => displayAllProductsView(category);
+    // =>  navigate("category", category);
+     categoryMenu.appendChild(categoryElement);
+  });
 
   const cartButton = document.getElementById("cart-button");
   cartButton.onclick = () => navigate("cart");
@@ -35,12 +46,19 @@ const initApp = async () => {
   favoritesButton.onclick = () => navigate("favorites");
 
   const pealkiriBtn = document.getElementById("pealkiri");
-  pealkiriBtn.onclick = () => navigate("allProducts", products);
+  // const randomNum = Math.floor(Math.random() * 4);
+  pealkiriBtn.onclick = () => {
+    const randomNum = Math.floor(Math.random() * 4);
+    displayAllProductsView(categories[randomNum]);
+
+  };
+
+    //=> navigate("allProducts", products);
 
   // oli vaja kutsuda initApp() nii et lahendus vb teeb probleeme!!
 
   // funktsioonide kutsumised
-  displayAllProductsView(products);
+  displayAllProductsView(categories[1]);
   // displayProductDetailView(products[1]);
   // displayCartView();
   // displayFavoritesView();

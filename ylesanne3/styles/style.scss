@@ -1,0 +1,71 @@
+@import "./variables";
+header {
+    background: rebeccapurple;
+    display: flex;
+    justify-content: space-between;
+    padding: 50px;
+    button{
+        // padding: 10px;
+        // margin: 15px;
+        color: $primaryBtn;
+        background-color: rgb(255, 255, 255);
+        &:hover {
+            background-color: $primaryBtnHover;
+        }
+    }
+}
+img {
+    height: 200px;
+}
+body {
+    margin: auto;
+    width: 95vw;
+    height: 100vh;
+    overflow: auto;
+    font-family: Arial, sans-serif;
+  }
+  div {
+    border-radius: 15px;
+    border: solid blueviolet;
+  }
+  a {
+    text-decoration: none;
+  }
+  .products-container {
+    background-color: rgb(255, 255, 255);
+  }
+  /* button.buy-Button {
+      margin: auto;
+      text-align: center;
+      color: blueviolet;
+  }
+  .buy-Button:hover {
+      background-color: purple;
+  } */
+  #products-view {
+    display: grid;
+  }
+  .cart-container {
+    display: grid;
+  }
+  .cart-items-container {
+    display: grid;
+    grid-auto-flow: column;
+  }
+  .order-container {
+    position: absolute;
+    padding: 40px;
+    margin-inline: auto;
+    background-color: #fff;
+    width: fit-content;
+    left: 0;
+    right: 0;
+  }
+  .order-container-hidden {
+    display: none;
+  }
+//   $primaryBtn: tomato;
+//   peab olema eespool seda kus teda kasutada, see oli variable
+button {
+    background-color: $primaryBtn
+}

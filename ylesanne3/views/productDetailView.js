@@ -1,5 +1,6 @@
 import { cartConstructor } from "../constructors/cart.js";
 import { customerConstructor } from "../constructors/customer.js";
+
 export const displayProductDetailView = (product) => {
   const container = document.getElementById("main-container");
   container.innerHTML = "";
@@ -11,6 +12,7 @@ export const displayProductDetailView = (product) => {
   <p>Category: ${product.category}</p>
   <p>Price: €${product.price}</p>
   <p>ID: ${product.id}</p>
+  <img src="${product.image}"><br>
   <button id="addToCartBtn${product.id}">Add to cart</button>
   <button id="addToFavoritesBtn${product.id}">${
     customerConstructor.isFavorite(product)

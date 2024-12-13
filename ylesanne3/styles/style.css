@@ -1,0 +1,78 @@
+header {
+  background: rebeccapurple;
+  display: flex;
+  justify-content: space-between;
+  padding: 50px;
+}
+header button {
+  color: chocolate;
+  background-color: rgb(255, 255, 255);
+}
+header button:hover {
+  background-color: lime;
+}
+
+img {
+  height: 200px;
+}
+
+body {
+  margin: auto;
+  width: 95vw;
+  height: 100vh;
+  overflow: auto;
+  font-family: Arial, sans-serif;
+}
+
+div {
+  border-radius: 15px;
+  border: solid blueviolet;
+}
+
+a {
+  text-decoration: none;
+}
+
+.products-container {
+  background-color: rgb(255, 255, 255);
+}
+
+/* button.buy-Button {
+    margin: auto;
+    text-align: center;
+    color: blueviolet;
+}
+.buy-Button:hover {
+    background-color: purple;
+} */
+#products-view {
+  display: grid;
+}
+
+.cart-container {
+  display: grid;
+}
+
+.cart-items-container {
+  display: grid;
+  grid-auto-flow: column;
+}
+
+.order-container {
+  position: absolute;
+  padding: 40px;
+  margin-inline: auto;
+  background-color: #fff;
+  width: -moz-fit-content;
+  width: fit-content;
+  left: 0;
+  right: 0;
+}
+
+.order-container-hidden {
+  display: none;
+}
+
+button {
+  background-color: chocolate;
+}/*# sourceMappingURL=style.css.map */

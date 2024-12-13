@@ -49,9 +49,9 @@ export class Cart {
   // }
 
   displayTotalItems() {
-    const cartCout = document.getElementById("cart-count");
+    const cartCount = document.getElementById("cart-count");
 
-    cartCout.innerHTML = this.items.reduce(
+    cartCount.innerHTML = this.items.reduce(
       (total, item) => total + item.quantity,
       0
     );

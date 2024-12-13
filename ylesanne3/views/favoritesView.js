@@ -19,6 +19,7 @@ export const displayFavoritesView = () => {
     favoriteItemElement.innerHTML = `
          <h3>${item.product.title}</h3>
          <p>Price: €${item.product.price}</p>
+         <img src="${item.product.image}"><br>
          <button id="addToCartBtn${item.product.id}">Add to cart</button>
          <button id="removeFavorites${item.product.id}">Remove from favorites</button>`;
 

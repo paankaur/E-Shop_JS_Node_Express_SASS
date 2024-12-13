@@ -30,6 +30,7 @@ export const displayCartView = () => {
       <h3>${item.product.title}</h3>
       <p>Price: €${item.product.price}</p>
       <p>Quantity: ${item.quantity}</p>
+      <img src="${item.product.image}">
     `;
     // -button
       const minusBtn = document.createElement("button");

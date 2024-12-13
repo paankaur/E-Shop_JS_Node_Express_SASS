@@ -3,8 +3,11 @@ import { cartConstructor } from "../constructors/cart.js";
 import { customerConstructor } from "../constructors/customer.js";
 import { displayCartView } from "./cartView.js";
 import { displayFavoritesView } from "./favoritesView.js";
+import { getProductsByCategory } from "../api.js";
 
-export const displayAllProductsView = (products) => {
+export const displayAllProductsView = async (category) => {
+  const products = await getProductsByCategory(category);
+
   const container = document.getElementById("main-container");
   container.innerHTML = "<h2>Products</h2>";
 
@@ -18,6 +21,7 @@ export const displayAllProductsView = (products) => {
         <h3>${product.title}</h3>
         <p>Category: ${product.category}</p>
         <p>Price: €${product.price}</p>
+        <img src="${product.image}"><br>
         <button id="addToCartBtn${product.id}">Add to cart</button>
         <button id="addToFavoritesBtn${product.id}">${
       customerConstructor.isFavorite(product)
