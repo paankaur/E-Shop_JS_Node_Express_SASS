@@ -6,7 +6,8 @@ header {
 }
 header button {
   color: chocolate;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(102, 7, 105);
+  border-radius: 15px;
 }
 header button:hover {
   background-color: lime;
@@ -24,10 +25,10 @@ body {
   font-family: Arial, sans-serif;
 }
 
-div {
+/* div {
   border-radius: 15px;
   border: solid blueviolet;
-}
+} */
 
 a {
   text-decoration: none;
@@ -76,3 +77,15 @@ a {
 button {
   background-color: chocolate;
 }/*# sourceMappingURL=style.css.map */
+
+#categories {
+  display: flex;
+}
+#cart-and-fave {
+  display: flex;
+}
+.product{
+  border: 2px solid rebeccapurple;
+  border-radius: 15px;
+  
+}
