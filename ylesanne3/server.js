@@ -8,6 +8,9 @@ const app = express();
 const PORT = 3000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+const localDB = path.join(__dirname,'data', 'products.json');
+
 // Middleware staatiliste failide jaoks
 app.use(express.static(path.join(__dirname)));
 
@@ -30,7 +33,7 @@ const isFileEmpty = async (path) => {
 };
 
 // API: Tagasta lokaalsest JSON-failist andmed
-app.get('/products', async (req, res) => {
+app.get('api/products', async (req, res) => {
   try {
     const filePath = './data/products.json';
 
@@ -72,6 +75,31 @@ app.get('/fetch-products', async (req, res) => {
     res.status(500).json({ error: 'Andmete laadimine ebaõnnestus' });
   }
 });
+
+// yhe kategooria vaade peaks see olema:
+app.get("/api/products/category/:category", async (req, res) => {
+  console.log(req.params);
+  try {
+    // Seadista vastuse päised
+    res.setHeader("Content-Type", "application/json");
+    res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+
+    // Loe andmed failist
+    const rawData = await fs.readFile(localDB, "utf-8");
+
+    // Parssige andmed
+    const products = JSON.parse(rawData);
+
+    const categoryProducts = products.filter(
+      (item) => item.category === req.params.category
+    );
+    res.status(200).json(categoryProducts);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Andmete lugemine ebaõnnestus" });
+  }
+});
+
 
 // Käivita server
 app.listen(PORT, () => {
