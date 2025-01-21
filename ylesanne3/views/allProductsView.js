@@ -3,10 +3,10 @@ import { cartConstructor } from "../constructors/cart.js";
 import { customerConstructor } from "../constructors/customer.js";
 import { displayCartView } from "./cartView.js";
 import { displayFavoritesView } from "./favoritesView.js";
-import { getProductsByCategory } from "../api.js";
+import { getProductsDataByCategory } from "../api.js";
 
 export const displayAllProductsView = async (category) => {
-  const products = await getProductsByCategory(category);
+  const products = await getProductsDataByCategory(category);
 
   const container = document.getElementById("main-container");
   container.innerHTML = "<h2>Products</h2>";

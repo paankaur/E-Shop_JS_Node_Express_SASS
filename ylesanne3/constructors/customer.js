@@ -1,10 +1,16 @@
 import { Order } from "./order.js";
 
+
 export class Customer {
   constructor(name) {
     this.name = name;
     this.orderHistory = [];
     this.favorites = [];
+    this.id = Math.floor(Math.random() * 100);
+  }
+
+  getCustomerData() {
+    return { name: this.name, id: this.id };
   }
 
   placeOrder(cart) {

@@ -1,18 +1,19 @@
 import { Product } from "./constructors/product.js";
-const BASE_URL = "https://fakestoreapi.com";
+
 // const BASE_URL = 'localhost:3000';
 export const getProductsDataFromJson = async () => {
   try {
-    const data = await fetch("./data.json");
+    const data = await fetch("/api/products");
     return data.json();
   } catch (error) {
     console.error(error);
   }
 };
 
-export const getProductsByCategory = async (category) => {
+export const getProductsDataByCategory = async (category) => {
   try {
-    const data = await fetch(`${BASE_URL}/products/category/${category}`);
+    const byCategory = category ? `/category/${category}` : "";
+    const data = await fetch(`/api/products${byCategory}`);
     // const data = await application.get(`${BASE_URL}/data/products.json/${category}`);
     const productsData = await data.json();
 
@@ -35,7 +36,7 @@ export const getProductsByCategory = async (category) => {
 
 export const getAllCategory = async () => {
   try {
-    const data = await fetch(`${BASE_URL}/products/categories`);
+    const data = await fetch("api/products/categories");
     return data.json();
   } catch (error) {
     console.error(error);
@@ -44,8 +45,10 @@ export const getAllCategory = async () => {
 
 export const getProductById = async (productId) => {
   try {
-    const data = await fetch(`${BASE_URL}/products/${productId}`);
+    const data = await fetch(`api/products/${productId}`);
     const productData = await data.json();
+    console.log(productData);
+
     const dataObject = new Product(
       productData.id,
       productData.title,
