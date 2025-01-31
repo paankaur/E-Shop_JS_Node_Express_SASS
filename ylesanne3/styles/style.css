@@ -3,6 +3,11 @@ header {
   display: flex;
   justify-content: space-between;
   padding: 50px;
+  cursor: pointer;
+  
+}
+#pealkiri {
+  border-radius: 8px;
 }
 header button {
   color: chocolate;

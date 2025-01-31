@@ -9,8 +9,6 @@ const PORT = 3000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-
-
 const localDB = path.join(__dirname, "data", "products.json");
 const favoritesDB = path.join(__dirname, "data", "favorites.json");
 
@@ -138,44 +136,45 @@ app.get("/api/products/:id", async (req, res) => {
 });
 //käsitsi tegin 'data' kausta faili 'favorites.json'
 //customer id järgi produkti leidmine
-app.get("/api/favorites/:customerId", async (req,res) => {
+app.get("/api/favorites/:customerId", async (req, res) => {
   try {
-    const favoritesData = JSON.parse(
-      await fs.readFile(favoritesDB, "utf-8")
-    );
+    const favoritesData = JSON.parse(await fs.readFile(favoritesDB, "utf-8"));
     const favoritesIds = favoritesData[req.params.customerId] || [];
     const data = JSON.parse(await fs.readFile(localDB, "utf-8"));
-    const products = data.filter((product) => 
-    favoritesIds.includes(product.id)
+    const products = data.filter((product) =>
+      favoritesIds.includes(product.id)
     );
 
     if (products) {
       res.status(200).json(products);
     } else {
-      res.status(404).json({message: "Toodete andmete lugemine ei õnnestunud"});
+      res
+        .status(404)
+        .json({ message: "Toodete andmete lugemine ei õnnestunud" });
     }
-
   } catch (error) {
-    res.status(404).json({message: "Andmete lugemine ebaõnnestus"});
+    res.status(404).json({
+      message: "Andmete lugemine ebaõnnestus, probleem ehk customer ID'ga",
+    });
   }
 });
 
 //producti POSTimine kindlale kliendi ID-le
-app.post("/api/favorites/:customerId/:productId", async (req,res) => {
+app.post("/api/favorites/:customerId/:productId", async (req, res) => {
   try {
     const emptyFile = await isFileEmpty(favoritesDB);
+    console.log(req.params);
 
     if (emptyFile) {
       const newData = {
         [req.params.customerId]: [parseInt(req.params.productId)],
       };
+      console.log(newData);
       await fs.writeFile(favoritesDB, JSON.stringify(newData, null, 2));
       return res.status(200).json(newData);
     }
 
-    const favoritesData = JSON.parse(
-      await fs.readFile(favoritesDB, "utf-8")
-    );
+    const favoritesData = JSON.parse(await fs.readFile(favoritesDB, "utf-8"));
 
     //võtan customeri producti id failist
     const favoritesIds = favoritesData[req.params.customerId] || [];
@@ -186,19 +185,35 @@ app.post("/api/favorites/:customerId/:productId", async (req,res) => {
     favoritesData[req.params.customerId] = uniqueIds;
 
     //kirjutan uue massiivi failisse
-    await fs.writeFile(
-      favoritesDB,
-      JSON.stringify(favoritesData, null, 2)
-    );
+    await fs.writeFile(favoritesDB, JSON.stringify(favoritesData, null, 2));
 
     // network tabist saab uurida jrgnevat
     res.status(200).json(uniqueIds);
   } catch (error) {
-    res.status(404).json({message: "Andmete kirjutamine lemmikutesse ei õnnestunud"});
+    res
+      .status(404)
+      .json({ message: "Andmete kirjutamine lemmikutesse ei õnnestunud" });
   }
 });
 
 //Endpoint to delete a favorite product by ID pooleli........................
+app.delete("/api/favorites/:customerId/:productId", async (req, res) => {
+  try {
+    const favoritesData = JSON.parse(
+      await fs.readFile(favoritesDB, "utf-8")
+    );
+    const favoritesIds = favoritesData[req.params.customerId] || [];
+
+    const newArray = favoritesIds.filter(
+      (id) => id !== parseInt(req.params.productId)
+    );
+    favoritesData[req.params.customerId] = newArray;
+    await fs.writeFile(favoritesDB, JSON.stringify(favoritesData, null, 2));
+    res.status(200).json(favoritesData);
+  } catch (error) {
+    res.status(404).json({ message: "Andmete kustutamine ei õnnistunud" });
+  }
+});
 
 // Käivita server
 app.listen(PORT, () => {

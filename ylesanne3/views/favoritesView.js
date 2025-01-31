@@ -1,11 +1,12 @@
 import { customerConstructor } from "../constructors/customer.js";
 import { cartConstructor } from "../constructors/cart.js";
 
-export const displayFavoritesView = () => {
-  const favorites = customerConstructor.getAllFavorites();
+export const displayFavoritesView = async () => {
+  const favorites = await customerConstructor.getAllFavorites();
 
   const container = document.getElementById("main-container");
   container.innerHTML = "<h2>Favorites:</h2>";
+  console.log(favorites)
   if (favorites.length === 0) {
     const emptyMessage = document.createElement("p");
     emptyMessage.innerText = "Your favorites list is empty.";
@@ -14,29 +15,30 @@ export const displayFavoritesView = () => {
   }
 
   favorites.forEach((item) => {
+    
     const favoriteItemElement = document.createElement("div");
     favoriteItemElement.classList.add("favorite-item");
     favoriteItemElement.innerHTML = `
-         <h3>${item.product.title}</h3>
-         <p>Price: €${item.product.price}</p>
-         <img src="${item.product.image}"><br>
-         <button id="addToCartBtn${item.product.id}">Add to cart</button>
-         <button id="removeFavorites${item.product.id}">Remove from favorites</button>`;
+         <h3>${item.title}</h3>
+         <p>Price: €${item.price}</p>
+         <img src="${item.image}"><br>
+         <button id="addToCartBtn${item.id}">Add to cart</button>
+         <button id="removeFavorites${item.id}">Remove from favorites</button>`;
 
     const cartButton = favoriteItemElement.querySelector(
-      `#addToCartBtn${item.product.id}`
+      `#addToCartBtn${item.id}`
     );
     cartButton.addEventListener("click", (event) => {
-      cartConstructor.addProduct(item.product);
+      cartConstructor.addProduct(item);
     });
 
 
     const favoritesButton = favoriteItemElement.querySelector(
-      `#removeFavorites${item.product.id}`
+      `#removeFavorites${item.id}`
     );
     favoritesButton.addEventListener("click", (event) => {
    
-         customerConstructor.toggleFavorites(item.product);
+         customerConstructor.toggleFavorites(item);
          favoriteItemElement.remove()
     });
 
